@@ -1,0 +1,255 @@
+export default function CopaDoMundoSite() {
+  const campeoes = [
+    { ano: 1958, campeao: 'Brasil', detalhe: 'Primeiro título do Brasil com Pelé brilhando.' },
+    { ano: 1962, campeao: 'Brasil', detalhe: 'Bi mundial com Garrincha destruindo.' },
+    { ano: 1970, campeao: 'Brasil', detalhe: 'Seleção considerada uma das melhores da história.' },
+    { ano: 1994, campeao: 'Brasil', detalhe: 'Título nos pênaltis contra a Itália.' },
+    { ano: 2002, campeao: 'Brasil', detalhe: 'Ronaldo Fenômeno marcou 2 gols na final.' },
+    { ano: 2022, campeao: 'Argentina', detalhe: 'Messi conquistou sua primeira Copa.' }
+  ];
+
+  const trajetorias = {
+    Brasil2002: {
+      eliminatorias: 'O Brasil teve dificuldades nas eliminatórias, mas garantiu vaga com Luiz Felipe Scolari.',
+      grupos: 'Vitórias sobre Turquia, China e Costa Rica.',
+      mataMata: 'Passou por Bélgica, Inglaterra e Turquia.',
+      final: 'Brasil 2x0 Alemanha com dois gols de Ronaldo.'
+    },
+    Argentina2022: {
+      eliminatorias: 'Argentina chegou muito forte e invicta.',
+      grupos: 'Perdeu para Arábia Saudita e depois se recuperou.',
+      mataMata: 'Eliminou Austrália, Holanda e Croácia.',
+      final: 'Final épica contra a França decidida nos pênaltis.'
+    }
+  };
+
+  const jogos = {
+    Brasil: [
+      { adversario: 'Sérvia', horario: '16:00', data: '24/11' },
+      { adversario: 'Suíça', horario: '13:00', data: '28/11' },
+      { adversario: 'Camarões', horario: '16:00', data: '02/12' }
+    ],
+    Argentina: [
+      { adversario: 'Arábia Saudita', horario: '07:00', data: '22/11' },
+      { adversario: 'México', horario: '16:00', data: '26/11' },
+      { adversario: 'Polônia', horario: '16:00', data: '30/11' }
+    ],
+    França: [
+      { adversario: 'Austrália', horario: '16:00', data: '22/11' },
+      { adversario: 'Dinamarca', horario: '13:00', data: '26/11' },
+      { adversario: 'Tunísia', horario: '12:00', data: '30/11' }
+    ]
+  };
+
+  const jogadores = {
+    Goleiro: ['Alisson', 'Emiliano Martínez', 'Courtois'],
+    Defesa: ['Marquinhos', 'Van Dijk', 'Rúben Dias'],
+    Meio: ['Modric', 'De Bruyne', 'Bellingham'],
+    Ataque: ['Messi', 'Mbappé', 'Vinicius Jr']
+  };
+
+  const [timeSelecionado, setTimeSelecionado] = React.useState('Brasil');
+  const [formacao, setFormacao] = React.useState('4-3-3');
+  const [meuTime, setMeuTime] = React.useState({
+    goleiro: '',
+    defesa: '',
+    meio: '',
+    ataque: ''
+  });
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-green-900 via-black to-green-950 text-white p-6 font-sans">
+      <div className="text-center mb-10">
+        <h1 className="text-5xl font-extrabold mb-4">🏆 Universo Copa do Mundo</h1>
+        <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          Um site completo e interativo sobre a história da Copa do Mundo, campeões,
+          trajetórias épicas, jogos, horários e até um criador do seu time ideal!
+        </p>
+      </div>
+
+      <section className="bg-white/10 rounded-3xl p-6 mb-8 shadow-2xl backdrop-blur-md">
+        <h2 className="text-3xl font-bold mb-4">🌍 Origem da Copa do Mundo</h2>
+        <p className="text-gray-200 leading-8">
+          A Copa do Mundo foi criada pela FIFA em 1930 e aconteceu pela primeira vez no Uruguai.
+          O objetivo era reunir as melhores seleções do planeta em um único torneio.
+          Desde então, a competição virou o maior evento esportivo do mundo, unindo países,
+          culturas e milhões de torcedores apaixonados.
+        </p>
+      </section>
+
+      <section className="bg-white/10 rounded-3xl p-6 mb-8 shadow-2xl">
+        <h2 className="text-3xl font-bold mb-6">🥇 Campeões Históricos</h2>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {campeoes.map((item, index) => (
+            <div key={index} className="bg-black/40 p-5 rounded-2xl border border-green-500 hover:scale-105 transition-all duration-300">
+              <h3 className="text-2xl font-bold text-yellow-400">{item.campeao}</h3>
+              <p className="text-xl">🏆 {item.ano}</p>
+              <p className="mt-3 text-gray-300">{item.detalhe}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-white/10 rounded-3xl p-6 mb-8 shadow-2xl">
+        <h2 className="text-3xl font-bold mb-6">🔥 Trajetórias Épicas</h2>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-black/40 p-5 rounded-2xl border border-yellow-500">
+            <h3 className="text-2xl font-bold text-green-400 mb-4">🇧🇷 Brasil 2002</h3>
+            <p><strong>Eliminatórias:</strong> {trajetorias.Brasil2002.eliminatorias}</p>
+            <p className="mt-2"><strong>Fase de grupos:</strong> {trajetorias.Brasil2002.grupos}</p>
+            <p className="mt-2"><strong>Mata-mata:</strong> {trajetorias.Brasil2002.mataMata}</p>
+            <p className="mt-2"><strong>Final:</strong> {trajetorias.Brasil2002.final}</p>
+          </div>
+
+          <div className="bg-black/40 p-5 rounded-2xl border border-sky-500">
+            <h3 className="text-2xl font-bold text-sky-400 mb-4">🇦🇷 Argentina 2022</h3>
+            <p><strong>Eliminatórias:</strong> {trajetorias.Argentina2022.eliminatorias}</p>
+            <p className="mt-2"><strong>Fase de grupos:</strong> {trajetorias.Argentina2022.grupos}</p>
+            <p className="mt-2"><strong>Mata-mata:</strong> {trajetorias.Argentina2022.mataMata}</p>
+            <p className="mt-2"><strong>Final:</strong> {trajetorias.Argentina2022.final}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white/10 rounded-3xl p-6 mb-8 shadow-2xl">
+        <h2 className="text-3xl font-bold mb-6">📅 Jogos e Horários</h2>
+
+        <div className="flex gap-3 flex-wrap mb-6">
+          {Object.keys(jogos).map((pais) => (
+            <button
+              key={pais}
+              onClick={() => setTimeSelecionado(pais)}
+              className={`px-5 py-2 rounded-xl font-bold transition-all ${
+                timeSelecionado === pais
+                  ? 'bg-green-500 text-black'
+                  : 'bg-black/40 hover:bg-green-700'
+              }`}
+            >
+              {pais}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-5">
+          {jogos[timeSelecionado].map((jogo, index) => (
+            <div key={index} className="bg-black/40 rounded-2xl p-5 border border-green-500">
+              <h3 className="text-2xl font-bold">⚽ {timeSelecionado} x {jogo.adversario}</h3>
+              <p className="mt-3 text-lg">📆 {jogo.data}</p>
+              <p className="text-lg">🕒 {jogo.horario}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-white/10 rounded-3xl p-6 mb-8 shadow-2xl">
+        <h2 className="text-3xl font-bold mb-6">🎮 Monte Seu Time Ideal</h2>
+
+        <div className="mb-5">
+          <label className="font-bold mr-3">Escolha a formação:</label>
+          <select
+            value={formacao}
+            onChange={(e) => setFormacao(e.target.value)}
+            className="bg-black text-white p-2 rounded-xl"
+          >
+            <option>4-3-3</option>
+            <option>4-4-2</option>
+            <option>3-5-2</option>
+          </select>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div>
+              <label className="font-bold">🧤 Goleiro</label>
+              <select
+                className="w-full mt-2 p-2 rounded-xl bg-black"
+                onChange={(e) => setMeuTime({ ...meuTime, goleiro: e.target.value })}
+              >
+                <option>Escolha</option>
+                {jogadores.Goleiro.map((j) => (
+                  <option key={j}>{j}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="font-bold">🛡️ Defesa</label>
+              <select
+                className="w-full mt-2 p-2 rounded-xl bg-black"
+                onChange={(e) => setMeuTime({ ...meuTime, defesa: e.target.value })}
+              >
+                <option>Escolha</option>
+                {jogadores.Defesa.map((j) => (
+                  <option key={j}>{j}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="font-bold">🎯 Meio-Campo</label>
+              <select
+                className="w-full mt-2 p-2 rounded-xl bg-black"
+                onChange={(e) => setMeuTime({ ...meuTime, meio: e.target.value })}
+              >
+                <option>Escolha</option>
+                {jogadores.Meio.map((j) => (
+                  <option key={j}>{j}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="font-bold">🔥 Ataque</label>
+              <select
+                className="w-full mt-2 p-2 rounded-xl bg-black"
+                onChange={(e) => setMeuTime({ ...meuTime, ataque: e.target.value })}
+              >
+                <option>Escolha</option>
+                {jogadores.Ataque.map((j) => (
+                  <option key={j}>{j}</option>
+                ))}
+              >
+              </select>
+            </div>
+          </div>
+
+          <div className="bg-black/40 rounded-2xl p-6 border border-yellow-500">
+            <h3 className="text-2xl font-bold mb-4">⭐ Seu Time Ideal</h3>
+            <p><strong>Formação:</strong> {formacao}</p>
+            <p className="mt-3">🧤 <strong>Goleiro:</strong> {meuTime.goleiro}</p>
+            <p className="mt-3">🛡️ <strong>Defesa:</strong> {meuTime.defesa}</p>
+            <p className="mt-3">🎯 <strong>Meio:</strong> {meuTime.meio}</p>
+            <p className="mt-3">🔥 <strong>Ataque:</strong> {meuTime.ataque}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white/10 rounded-3xl p-6 mb-8 shadow-2xl">
+        <h2 className="text-3xl font-bold mb-6">⚡ Extras Divertidos</h2>
+
+        <div className="grid md:grid-cols-3 gap-5">
+          <div className="bg-black/40 p-5 rounded-2xl border border-purple-500 hover:rotate-1 transition-all">
+            <h3 className="text-xl font-bold mb-3">🎲 Simulador de Campeão</h3>
+            <p>Imagine quem pode ganhar a próxima Copa do Mundo.</p>
+          </div>
+
+          <div className="bg-black/40 p-5 rounded-2xl border border-red-500 hover:scale-105 transition-all">
+            <h3 className="text-xl font-bold mb-3">🏟️ Curiosidades</h3>
+            <p>Descubra recordes, maiores artilheiros e finais históricas.</p>
+          </div>
+
+          <div className="bg-black/40 p-5 rounded-2xl border border-blue-500 hover:-rotate-1 transition-all">
+            <h3 className="text-xl font-bold mb-3">🎧 Música da Torcida</h3>
+            <p>Adicione sons e músicas de torcida para deixar o site mais imersivo.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer className="text-center text-gray-400 mt-10 pb-6">
+        <p>🏆 Projeto Interativo Copa do Mundo | Criado com HTML + React + Tailwind</p>
+      </footer>
+    </div>
+  );
+}
