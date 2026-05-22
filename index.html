@@ -1,6 +1,295 @@
 import React, { useState } from 'react';
 
 export default function App() {
+  const [timeSelecionado, setTimeSelecionado] = useState('Brasil');
+  const [resultadoCampeao, setResultadoCampeao] = useState('');
+  const [formacao, setFormacao] = useState('4-3-3');
+
+  const campeoes = [
+    {
+      ano: '1958',
+      pais: 'Brasil',
+      descricao: 'Primeiro título do Brasil com Pelé brilhando no mundo.'
+    },
+    {
+      ano: '1970',
+      pais: 'Brasil',
+      descricao: 'A seleção mais lendária da história das Copas.'
+    },
+    {
+      ano: '2002',
+      pais: 'Brasil',
+      descricao: 'Ronaldo Fenômeno destruiu na final contra a Alemanha.'
+    },
+    {
+      ano: '2022',
+      pais: 'Argentina',
+      descricao: 'Messi levantou sua primeira Copa do Mundo.'
+    }
+  ];
+
+  const jogos = {
+    Brasil: [
+      { jogo: 'Brasil x Sérvia', horario: '24/11 - 16:00' },
+      { jogo: 'Brasil x Suíça', horario: '28/11 - 13:00' },
+      { jogo: 'Brasil x Camarões', horario: '02/12 - 16:00' }
+    ],
+    Argentina: [
+      { jogo: 'Argentina x México', horario: '26/11 - 16:00' },
+      { jogo: 'Argentina x Polônia', horario: '30/11 - 16:00' }
+    ],
+    França: [
+      { jogo: 'França x Dinamarca', horario: '26/11 - 13:00' },
+      { jogo: 'França x Tunísia', horario: '30/11 - 12:00' }
+    ]
+  };
+
+  const selecoes = [
+    '🇧🇷 Brasil',
+    '🇦🇷 Argentina',
+    '🇫🇷 França',
+    '🇩🇪 Alemanha',
+    '🏴 Inglaterra',
+    '🇪🇸 Espanha'
+  ];
+
+  function simularCampeao() {
+    const random =
+      selecoes[Math.floor(Math.random() * selecoes.length)];
+
+    setResultadoCampeao(`${random} será campeão da Copa! 🏆`);
+  }
+
+  return (
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-green-900 via-black to-black opacity-90"></div>
+
+      <div className="relative z-10">
+        <header className="text-center py-16 px-4 border-b border-green-500/30">
+          <h1 className="text-6xl md:text-7xl font-black text-yellow-400 drop-shadow-lg animate-pulse">
+            🏆 WORLD CUP
+          </h1>
+
+          <p className="text-xl mt-6 text-gray-300 max-w-3xl mx-auto leading-8">
+            Um universo interativo sobre a Copa do Mundo com história,
+            campeões, jogos, simulador e montagem do seu time ideal.
+          </p>
+
+          <div className="mt-10 flex justify-center gap-4 flex-wrap">
+            <button className="bg-green-500 hover:bg-green-400 transition-all px-6 py-3 rounded-2xl font-bold text-black shadow-lg hover:scale-105">
+              Explorar Campeões
+            </button>
+
+            <button className="bg-yellow-400 hover:bg-yellow-300 transition-all px-6 py-3 rounded-2xl font-bold text-black shadow-lg hover:scale-105">
+              Ver Jogos
+            </button>
+          </div>
+        </header>
+
+        <section className="max-w-7xl mx-auto px-5 py-16">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <h2 className="text-5xl font-black text-green-400 mb-8">
+                🌍 Origem da Copa
+              </h2>
+
+              <p className="text-gray-300 leading-9 text-lg">
+                A Copa do Mundo nasceu em 1930 e rapidamente se transformou
+                no maior evento esportivo do planeta. Países inteiros param
+                para acompanhar partidas históricas, craques lendários e finais
+                inesquecíveis.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-500/20 to-yellow-500/20 rounded-3xl p-10 border border-green-500/30 shadow-2xl">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-6">
+                ⚽ Curiosidades
+              </h3>
+
+              <div className="space-y-5 text-lg">
+                <div className="bg-black/40 p-4 rounded-2xl">
+                  🏆 Brasil é o maior campeão mundial.
+                </div>
+
+                <div className="bg-black/40 p-4 rounded-2xl">
+                  🔥 Messi venceu a Copa em 2022.
+                </div>
+
+                <div className="bg-black/40 p-4 rounded-2xl">
+                  ⚡ Ronaldo Fenômeno marcou 8 gols em 2002.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="max-w-7xl mx-auto px-5 py-10">
+          <h2 className="text-5xl font-black text-center text-yellow-400 mb-14">
+            🥇 Campeões Históricos
+          </h2>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
+            {campeoes.map((item, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-b from-green-500/10 to-black border border-green-500/30 rounded-3xl p-8 hover:scale-105 transition-all duration-300 shadow-2xl"
+              >
+                <div className="text-5xl mb-5">🏆</div>
+
+                <h3 className="text-3xl font-black text-green-400">
+                  {item.pais}
+                </h3>
+
+                <p className="text-yellow-400 text-2xl mt-2">
+                  {item.ano}
+                </p>
+
+                <p className="text-gray-300 mt-5 leading-8">
+                  {item.descricao}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="max-w-7xl mx-auto px-5 py-16">
+          <h2 className="text-5xl font-black text-center text-green-400 mb-14">
+            📅 Jogos e Horários
+          </h2>
+
+          <div className="flex justify-center flex-wrap gap-4 mb-12">
+            {Object.keys(jogos).map((time) => (
+              <button
+                key={time}
+                onClick={() => setTimeSelecionado(time)}
+                className={`px-6 py-3 rounded-2xl font-bold transition-all hover:scale-105 ${
+                  timeSelecionado === time
+                    ? 'bg-yellow-400 text-black'
+                    : 'bg-green-500 text-black'
+                }`}
+              >
+                {time}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {jogos[timeSelecionado].map((item, index) => (
+              <div
+                key={index}
+                className="bg-black border border-yellow-400/40 rounded-3xl p-8 shadow-2xl hover:-translate-y-2 transition-all"
+              >
+                <h3 className="text-2xl font-black text-yellow-400 mb-5">
+                  ⚽ {item.jogo}
+                </h3>
+
+                <div className="bg-green-500/20 rounded-2xl p-4 text-xl font-bold">
+                  🕒 {item.horario}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="max-w-7xl mx-auto px-5 py-16">
+          <h2 className="text-5xl font-black text-center text-yellow-400 mb-14">
+            🎮 Monte Seu Time Ideal
+          </h2>
+
+          <div className="grid lg:grid-cols-2 gap-10">
+            <div className="bg-black border border-green-500/30 rounded-3xl p-8 shadow-2xl">
+              <label className="block text-2xl font-bold mb-4">
+                Formação
+              </label>
+
+              <select
+                value={formacao}
+                onChange={(e) => setFormacao(e.target.value)}
+                className="w-full p-4 rounded-2xl bg-green-950 border border-green-500 text-white text-lg"
+              >
+                <option>4-3-3</option>
+                <option>4-4-2</option>
+                <option>3-5-2</option>
+              </select>
+
+              <div className="mt-10 space-y-5">
+                <div className="bg-green-500/10 p-5 rounded-2xl text-xl">
+                  🧤 Goleiro: Alisson
+                </div>
+
+                <div className="bg-green-500/10 p-5 rounded-2xl text-xl">
+                  🛡️ Defesa: Van Dijk
+                </div>
+
+                <div className="bg-green-500/10 p-5 rounded-2xl text-xl">
+                  🎯 Meio: Modric
+                </div>
+
+                <div className="bg-green-500/10 p-5 rounded-2xl text-xl">
+                  🔥 Ataque: Messi
+                </div>
+              </div>
+            </div>
+
+            <div className="relative rounded-3xl overflow-hidden border border-yellow-400/30 shadow-2xl min-h-[500px] bg-[url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center">
+              <div className="absolute inset-0 bg-black/40"></div>
+
+              <div className="relative z-10 flex flex-col items-center justify-center h-full p-10">
+                <h3 className="text-4xl font-black text-yellow-400 mb-12">
+                  ⭐ Formação {formacao}
+                </h3>
+
+                <div className="space-y-6 w-full max-w-md">
+                  <div className="bg-black/70 p-4 rounded-2xl text-center text-xl font-bold">
+                    🔥 Messi
+                  </div>
+
+                  <div className="bg-black/70 p-4 rounded-2xl text-center text-xl font-bold">
+                    🎯 Modric
+                  </div>
+
+                  <div className="bg-black/70 p-4 rounded-2xl text-center text-xl font-bold">
+                    🛡️ Van Dijk
+                  </div>
+
+                  <div className="bg-black/70 p-4 rounded-2xl text-center text-xl font-bold">
+                    🧤 Alisson
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="max-w-5xl mx-auto px-5 py-16 text-center">
+          <h2 className="text-5xl font-black text-green-400 mb-12">
+            🎲 Simulador de Campeão
+          </h2>
+
+          <button
+            onClick={simularCampeao}
+            className="bg-yellow-400 text-black px-10 py-5 rounded-3xl text-2xl font-black hover:scale-105 transition-all shadow-2xl"
+          >
+            Simular Agora
+          </button>
+
+          {resultadoCampeao && (
+            <div className="mt-10 bg-green-500/10 border border-green-500/30 rounded-3xl p-8 text-4xl font-black text-yellow-400 animate-pulse">
+              {resultadoCampeao}
+            </div>
+          )}
+        </section>
+
+        <footer className="text-center py-10 border-t border-green-500/20 text-gray-400 text-lg">
+          ⚽ Site Interativo da Copa do Mundo • Feito para ficar INSANO 🔥
+        </footer>
+      </div>
+    </div>
+  );
+}
+import React, { useState } from 'react';
+
+export default function App() {
   const trajetorias = {
     brasil2002: {
       titulo: '🇧🇷 Brasil 2002',
